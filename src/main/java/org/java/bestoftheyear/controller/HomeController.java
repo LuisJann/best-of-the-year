@@ -6,10 +6,10 @@ import org.java.bestoftheyear.model.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Controller
 @RequestMapping("/")
@@ -45,9 +45,9 @@ public class HomeController {
 
     @GetMapping("/songs")
     public String songs(Model model){
-        List<Song> movieList = getBestSong();
+        List<Song> songList = getBestSong();
         String titles = "";
-        for (Song s: movieList) {
+        for (Song s: songList) {
             titles += s.getTitle() + ", ";
         }
         titles = titles.substring(0,titles.length()-1);
@@ -67,5 +67,19 @@ public class HomeController {
         songs.add(new Song("Redemption song",1));
         songs.add(new Song("Here comes the sun",2));
         return songs;
+    }
+
+    @GetMapping("/songs/{id}")
+    public String songId(@PathVariable("id") int id, Model model){
+        Optional<Song> foundSong = getBestSong().stream().filter(song->song.getId() == id).findFirst();
+        model.addAttribute("title", foundSong.isPresent() ? foundSong.get().getTitle() : "Song not found");
+        return "songDetails";
+    }
+
+    @GetMapping("/movies/{id}")
+    public String movieId(@PathVariable("id") int id, Model model){
+        Optional<Movie> foundMovie = getBestMovie().stream().filter(movie -> movie.getId() == id).findFirst();
+        model.addAttribute("title", foundMovie.isPresent() ? foundMovie.get().getTitle() : "Movie not found");
+        return "movieDetails";
     }
 }
