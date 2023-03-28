@@ -8,7 +8,7 @@
     <title>Song Details</title>
 </head>
 <body>
-<nav th:replace="~{fragment :: navbar}"></nav>
+<nav th:replace="~{fragment :: navbar('movieDetails')}"></nav>
 <div class="card mt-5 mx-auto text-center" style="width: 18rem;">
     <div class="card-body">
         <h1 class="card-title" th:text="${movie.title}"></h1>
