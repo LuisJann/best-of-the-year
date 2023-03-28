@@ -8,7 +8,9 @@
     <title>Movies</title>
 </head>
 <body>
-<h1>“This song: <span th:text="${title}"></span>”</h1>
+<h1>“This song: <span th:text="${song.title}"></span>”</h1>
+<h2>Band: <span th:text="${song.singer}"></span></h2>
+<p th:text="${song.description}"></p>
 
 </body>
 </html>

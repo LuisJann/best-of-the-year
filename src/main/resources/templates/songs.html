@@ -8,7 +8,11 @@
     <title>Songs</title>
 </head>
 <body>
-<h1>“Best songs: <span th:text="${title}"></span>”</h1>
+<div th:if="${songs.size() == 0}">There are no song</div>
+<ul th:unless="${songs.size() == 0}">
+    <li th:each="song : ${songs}"><a th:href="|/songs/${song.id}" th:text="${song.title}"></a></li>
+</ul>
+
 
 </body>
 </html>

@@ -8,7 +8,10 @@
     <title>Movies</title>
 </head>
 <body>
-<h1>“Best Film: <span th:text="${movies}"></span>”</h1>
+<div th:if="${movies.size() == 0}">There are no movie</div>
+<ul th:unless="${movies.size() == 0}">
+    <li th:each="movie : ${movies}"><a th:href="|/movies/${movie.id}" th:text="${movie.title}"></a></li>
+</ul>
 
 </body>
 </html>

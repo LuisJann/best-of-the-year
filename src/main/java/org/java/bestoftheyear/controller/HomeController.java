@@ -34,52 +34,52 @@ public class HomeController {
     @GetMapping("/movies")
     public String movies(Model model){
         List<Movie> movieList = getBestMovie();
-        String titles = "";
+        /*StringBuilder titles = new StringBuilder();
         for (Movie m: movieList) {
-            titles += m.getTitle() + ", ";
+            titles.append(m.getTitle()).append(", ");
         }
-        titles = titles.substring(0,titles.length()-1);
-        model.addAttribute("movies", titles);
+        titles = new StringBuilder(titles.substring(0, titles.length() - 1));*/
+        model.addAttribute("movies", movieList);
         return "movies";
     }
 
     @GetMapping("/songs")
     public String songs(Model model){
         List<Song> songList = getBestSong();
-        String titles = "";
+        /*StringBuilder titles = new StringBuilder();
         for (Song s: songList) {
-            titles += s.getTitle() + ", ";
+            titles.append(s.getTitle()).append(", ");
         }
-        titles = titles.substring(0,titles.length()-1);
-        model.addAttribute("songs", titles);
+        titles = new StringBuilder(titles.substring(0, titles.length() - 1));*/
+        model.addAttribute("songs", songList);
         return "songs";
     }
 
     private List<Movie> getBestMovie(){
         List<Movie> movies = new ArrayList<>();
-        movies.add(new Movie("Into the wild", 1));
-        movies.add(new Movie("The wolf of wallstreet",2));
+        movies.add(new Movie("Into the wild", 1, "description","director"));
+        movies.add(new Movie("The wolf of wallstreet",2,"description","director"));
         return movies;
     }
 
     private List<Song> getBestSong(){
         List<Song> songs = new ArrayList<>();
-        songs.add(new Song("Redemption song",1));
-        songs.add(new Song("Here comes the sun",2));
+        songs.add(new Song("Redemption song",1,"description","Bob Marley"));
+        songs.add(new Song("Here comes the sun",2,"description","Beatles"));
         return songs;
     }
 
     @GetMapping("/songs/{id}")
     public String songId(@PathVariable("id") int id, Model model){
         Optional<Song> foundSong = getBestSong().stream().filter(song->song.getId() == id).findFirst();
-        model.addAttribute("title", foundSong.isPresent() ? foundSong.get().getTitle() : "Song not found");
+        model.addAttribute("song", foundSong.isPresent() ? foundSong.get() : "Song not found");
         return "songDetails";
     }
 
     @GetMapping("/movies/{id}")
     public String movieId(@PathVariable("id") int id, Model model){
         Optional<Movie> foundMovie = getBestMovie().stream().filter(movie -> movie.getId() == id).findFirst();
-        model.addAttribute("title", foundMovie.isPresent() ? foundMovie.get().getTitle() : "Movie not found");
+        model.addAttribute("movie", foundMovie.isPresent() ? foundMovie.get() : "Movie not found");
         return "movieDetails";
     }
 }

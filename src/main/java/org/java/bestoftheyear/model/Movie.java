@@ -4,6 +4,9 @@ public class Movie {
     private String title;
     private int id;
 
+    private String description;
+    private String director;
+
     public String getTitle() {
         return title;
     }
@@ -20,8 +23,26 @@ public class Movie {
         this.id = id;
     }
 
-    public Movie(String title, int id) {
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getDirector() {
+        return director;
+    }
+
+    public void setDirector(String director) {
+        this.director = director;
+    }
+
+    public Movie(String title, int id, String description, String director) {
         this.title = title;
         this.id = id;
+        this.description = description;
+        this.director = director;
     }
 }
