@@ -7,7 +7,7 @@
     </th:block>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg bg-light" th:fragment="navbar">
+<nav class="navbar navbar-expand-lg bg-light" th:fragment="navbar(current)">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">Best Of</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -16,13 +16,13 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" th:href="@{/}">Home</a>
+                    <a class="nav-link active" aria-current="page" th:href="@{/}" th:classAppend="${current == 'home'} ? text-danger : not-active">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/movies}">Movies</a>
+                    <a class="nav-link" th:href="@{/movies}" th:classAppend="${current == 'movies'} ? text-danger : not-active">Movies</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/songs}">Songs</a>
+                    <a class="nav-link" th:href="@{/songs}" th:classAppend="${current == 'songs'} ? text-danger : not-active">Songs</a>
                 </li>
             </ul>
         </div>
