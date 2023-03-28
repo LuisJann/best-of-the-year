@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:insert="~{fragment :: resources}">
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -8,7 +8,17 @@
     <title>Home</title>
 </head>
 <body>
-<h1>“Best of the year by <span th:text="${name}"></span>”</h1>
+<nav th:replace="~{fragment :: navbar}"></nav>
+<div class="text-center w-50 mx-auto">
+    <h1>“Best of the year by <span th:text="${name}"></span>”</h1>
+    <img th:src="@{/img.webp}">
+    <p class="px-5 py-3">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        Sed euismod, nisi eget dignissim ultrices, nulla lorem accumsan enim, a rutrum elit ipsum eu neque.
+        Nunc sagittis nunc sed ligula varius, ac dapibus magna imperdiet. Nulla facilisi. Donec lacinia nulla nec mi hendrerit blandit.
+    </p>
 
+</div>
+<th:block th:replace="~{fragment :: scripts}"></th:block>
 </body>
 </html>

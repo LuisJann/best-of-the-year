@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:insert="~{fragment :: resources}">
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -8,11 +8,14 @@
     <title>Songs</title>
 </head>
 <body>
+<nav th:replace="~{fragment :: navbar}"></nav>
 <div th:if="${songs.size() == 0}">There are no song</div>
-<ul th:unless="${songs.size() == 0}">
-    <li th:each="song : ${songs}"><a th:href="|/songs/${song.id}" th:text="${song.title}"></a></li>
-</ul>
-
-
+<div class="text-center w-50 mx-auto mt-5">
+    <h1>Best Songs</h1>
+    <ul th:unless="${songs.size() == 0}" class="list-group">
+        <li class="list-group-item" th:each="song : ${songs}"><a th:href="|/songs/${song.id}" th:text="${song.title}"></a></li>
+    </ul>
+</div>
+<th:block th:replace="~{fragment :: scripts}"></th:block>
 </body>
 </html>

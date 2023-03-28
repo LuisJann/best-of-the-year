@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:insert="~{fragment :: resources}">
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -8,9 +8,15 @@
     <title>Movies</title>
 </head>
 <body>
-<h1>“This song: <span th:text="${song.title}"></span>”</h1>
-<h2>Band: <span th:text="${song.singer}"></span></h2>
-<p th:text="${song.description}"></p>
+<nav th:replace="~{fragment :: navbar}"></nav>
 
+<div class="card mt-5 mx-auto text-center" style="width: 18rem;">
+    <div class="card-body">
+        <h1 class="card-title" th:text="${song.title}"></h1>
+        <h3 class="card-subtitle mb-2 text-muted" th:text="${song.singer}"></h3>
+        <p class="card-text" th:text="${song.description}"></p>
+    </div>
+</div>
+<th:block th:replace="~{fragment :: scripts}"></th:block>
 </body>
 </html>
